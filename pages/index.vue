@@ -5,7 +5,7 @@
         <!-- LEFT COL -->
         <header class="introduction">
           <h1>Dario Breitenstein</h1>
-          <h3>I am a designer, engineer and artist building bridges between the digital and physical world.</h3>
+          <h3 class="py-1">I am a designer, engineer and artist building bridges between the digital and physical world.</h3>
           <h3>
             Zürich
             <br>
@@ -14,27 +14,53 @@
         </header>
 
         <section class="social-links">
-          <a href="#">LinkedIn</a>
-          <a href="#">Instagram</a>
-          <a href="#">GitHub</a>
+          <a href="https://www.linkedin.com/in/dario-breitenstein-397873a6/" target="_blank">LinkedIn</a>
+<!--          <a href="#">Instagram</a>-->
+          <a href="https://github.com/chdabre" target="_blank">GitHub</a>
         </section>
 
-        <thing-list-tile/>
+        <section class="showcase">
+          <h3 class="text-title">Showcase</h3>
+          <thing-list-tile
+              title="Photoautomat. 2019"
+              headline="An accessible eye-catcher that helps create lasting memories"
+              color="#0000FF"
+              gltf-url="x"
+              href="#"
+          />
+        </section>
       </div>
       <div ref="scrollTarget" class="col col-6 col-md-3 col-lg-2 col-reverse">
         <!-- MIDDLE COL -->
-        <thing-list-tile/>
+        <thing-list-tile
+            title="Museum ENTER. 2022"
+            headline="An audiovisual storyteller that grows with the collection"
+            color="#FF00FF"
+            href="#"
+            gltf-url="c"
+        />
+
+        <thing-list-tile
+            title="The Line. 2020"
+            headline="A whimsical, ephemeral messenger that lives in the center of a communal space"
+            image-url="https://res.cloudinary.com/dey9hupke/image/upload/w_600,h_400,c_fill/v1589816392/imakethings/hotline.png"
+            color="#FFFF00"
+            href="#"
+        />
       </div>
     </div>
     <div class="col col-6 col-lg-2 contain-scroll">
       <!-- RIGHT COL -->
+      <section class="other-things">
+        <h3 class="text-title">Other Projects</h3>
+      </section>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import {onMounted, ref} from "#imports";
-import ThingListTile from "~/pages/ThingListTile.vue";
+import ThingListTile from "~/components/ThingListTile.vue";
 
 const BREAKPOINT_MOBILE = 768;
 

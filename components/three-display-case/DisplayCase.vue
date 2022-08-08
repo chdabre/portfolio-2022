@@ -1,5 +1,6 @@
 <template>
   <div ref="container" class="display-case">
+    <loading-indicator v-if="loading" :progress="progress"></loading-indicator>
     <canvas ref="canvas"></canvas>
   </div>
 </template>
@@ -15,6 +16,10 @@ import {CustomOutlinePass} from './shaders/CustomOutlinePass';
 import {DitherShader} from "./shaders/dither4x4";
 import {onMounted, ref} from "#imports";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
+import LoadingIndicator from "~/components/LoadingIndicator.vue";
+
+const loading = ref<boolean>(false);
+const progress = ref<number>(0);
 
 const container = ref<HTMLElement>();
 const canvas = ref<HTMLCanvasElement>();
@@ -189,20 +194,27 @@ onMounted(() => {
 
   const loader = new GLTFLoader();
 
+  loading.value = true;
   loader.load('/models/photobox.glb', function (gltf) {
-      //setupScene(gltf.scene);
-      scene.value = new DisplayCaseScene(canvas.value, container.value.clientWidth, container.value.clientWidth, gltf.scene);
+    loading.value = false;
+    scene.value = new DisplayCaseScene(canvas.value, container.value.clientWidth, container.value.clientWidth, gltf.scene);
   }, (xhr) => {
-      console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+    progress.value = (xhr.loaded / xhr.total);
   },
   (error) => {
-      console.log(error);
+    console.log(error);
   });
 })
 </script>
 
 <style lang="scss" scoped>
-canvas {
-  image-rendering: pixelated;
+.display-case {
+  position: relative;
+  padding-bottom: 100%;
+
+  canvas {
+    position: absolute;
+    image-rendering: pixelated;
+  }
 }
 </style>
