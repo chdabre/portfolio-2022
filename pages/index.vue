@@ -53,6 +53,19 @@
       <!-- RIGHT COL -->
       <section class="other-things">
         <h3 class="text-title">Other Projects</h3>
+
+        <ThingListItem
+            title="Mailman. 2022"
+            subtitle="Personal Project"
+            headline="App to schedule Postcard Creator jobs without checking in every day"
+            href="#"
+        />
+        <ThingListItem
+            title="Unfold News. 2021"
+            subtitle="HackZurich “SRF Workshop Award”"
+            headline="A new way to dive into your news topics without missing what’s important"
+            href="#"
+        />
       </section>
     </div>
   </div>
@@ -61,6 +74,8 @@
 <script lang="ts" setup>
 import {onMounted, ref} from "#imports";
 import ThingListTile from "~/components/ThingListTile.vue";
+import ThingListItem from "~/components/ThingListItem.vue";
+import {queryContent} from "@nuxt/content/dist/runtime/composables/query";
 
 const BREAKPOINT_MOBILE = 768;
 
@@ -88,9 +103,34 @@ function animate() {
   }
 }
 
+// queryContent('/showcase').find().then(items => {
+//   console.log(items)
+// })
+
 onMounted(() => {
   window.addEventListener('scroll', animate);
   window.addEventListener('resize', setupAnimation);
   setupAnimation();
 })
 </script>
+
+<style>
+.tooltip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(-50%) translateY(-50%);
+
+  width: 75px;
+  height: 75px;
+  line-height: 75px;
+  border-radius: 50%;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  background: #000;
+
+  z-index: 5;
+}
+</style>

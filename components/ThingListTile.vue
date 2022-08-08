@@ -1,20 +1,24 @@
 <template>
   <article class="thing">
     <figure>
-      <display-case
-          v-if="gltfUrl"
-          :url="gltfUrl"
-      ></display-case>
-      <dither-image
-          v-if="imageUrl"
-          :src="imageUrl"
-          :alt="headline"
-      ></dither-image>
-      <figcaption :style="captionStyle">
+      <tooltip
+          :color="color"
+          :href="href"
+      >
+        <display-case
+            v-if="gltfUrl"
+            :url="gltfUrl"
+        ></display-case>
+        <dither-image
+            v-if="imageUrl"
+            :src="imageUrl"
+            :alt="headline"
+        ></dither-image>
+      </tooltip>
+      <nuxt-link :to="href" :style="captionStyle">
         <h2 v-text="title"></h2>
         <h3 v-text="headline"></h3>
-        <a :href="href">STORY</a>
-      </figcaption>
+      </nuxt-link>
     </figure>
   </article>
 </template>
@@ -22,6 +26,7 @@
 <script lang="ts" setup>
 import DisplayCase from "~/components/three-display-case/DisplayCase.vue";
 import DitherImage from "~/components/DitherImage.vue";
+import Tooltip from "~/components/Tooltip.vue";
 import {toRefs} from "#imports";
 import {deferredComputed} from "@vue/reactivity";
 
@@ -60,22 +65,25 @@ function fontColor(color: string) {
 .thing {
   border-bottom: 2px solid black;
 
-  figcaption {
-    background-color: rgba(0, 0, 0, 0.1);
-
+  a {
+    display: block;
     padding: $unit;
+
+    background-color: $grey-light;
+
+    color: inherit;
+    text-decoration: none;
+
+    h2 {
+      text-decoration: underline;
+    }
 
     h3 {
       padding: $unit 0;
     }
 
-    a {
+    &:visited {
       color: inherit;
-      text-decoration: none;
-
-      &:visited {
-        color: inherit;
-      }
     }
   }
 }
