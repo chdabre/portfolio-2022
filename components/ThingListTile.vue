@@ -3,6 +3,7 @@
     <figure>
       <display-case
           v-if="gltfUrl"
+          :url="gltfUrl"
       ></display-case>
       <dither-image
           v-if="imageUrl"
@@ -57,8 +58,10 @@ function fontColor(color: string) {
 @import "assets/css/variables";
 
 .thing {
+  border-bottom: 2px solid black;
+
   figcaption {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
 
     padding: $unit;
 

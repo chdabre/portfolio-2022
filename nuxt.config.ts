@@ -4,5 +4,18 @@ import { defineNuxtConfig } from 'nuxt'
 export default defineNuxtConfig({
     css: [
         '@/assets/css/main.scss',
-    ]
+    ],
+    buildModules: [
+        '@nuxtjs/google-fonts',
+    ],
+    googleFonts: {
+        preload: true,
+        prefetch: true,
+        preconnect: true,
+        families: {
+            'Space Grotesk': {
+                wght: [300, 400, 500, 600, 700],
+            },
+        }
+    }
 })

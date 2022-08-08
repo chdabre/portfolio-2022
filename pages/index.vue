@@ -25,7 +25,7 @@
               title="Photoautomat. 2019"
               headline="An accessible eye-catcher that helps create lasting memories"
               color="#0000FF"
-              gltf-url="x"
+              gltf-url="/models/photobox.glb"
               href="#"
           />
         </section>
@@ -37,7 +37,7 @@
             headline="An audiovisual storyteller that grows with the collection"
             color="#FF00FF"
             href="#"
-            gltf-url="c"
+            gltf-url="/models/audioguide.glb"
         />
 
         <thing-list-tile

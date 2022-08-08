@@ -14,9 +14,15 @@ import {ShaderPass} from "three/examples/jsm/postprocessing/ShaderPass";
 
 import {CustomOutlinePass} from './shaders/CustomOutlinePass';
 import {DitherShader} from "./shaders/dither4x4";
-import {onMounted, ref} from "#imports";
+import {onMounted, ref, toRefs} from "#imports";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 import LoadingIndicator from "~/components/LoadingIndicator.vue";
+
+const props = defineProps<{
+  url: string,
+}>();
+
+const { url } = toRefs(props);
 
 const loading = ref<boolean>(false);
 const progress = ref<number>(0);
@@ -51,7 +57,11 @@ class DisplayCaseScene extends THREE.Scene {
     this.object = object;
     this.canvas = canvas;
     this.size = new THREE.Vector2(width, height);
+
     this.add(object);
+    this.object.rotation.x = Math.random() * Math.PI;
+    this.object.rotation.y = Math.random() * Math.PI;
+
     this._setupLights();
     this._setupCamera();
     this._setupRenderer(canvas);
@@ -195,7 +205,7 @@ onMounted(() => {
   const loader = new GLTFLoader();
 
   loading.value = true;
-  loader.load('/models/photobox.glb', function (gltf) {
+  loader.load(url.value, function (gltf) {
     loading.value = false;
     scene.value = new DisplayCaseScene(canvas.value, container.value.clientWidth, container.value.clientWidth, gltf.scene);
   }, (xhr) => {
