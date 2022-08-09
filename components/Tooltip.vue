@@ -6,9 +6,10 @@
       @mouseenter="showTooltip = true"
       @mouseleave="showTooltip = false"
       @mousemove="onMouseMove"
+      @touchend="showTooltip = false"
   >
     <ClientOnly>
-      <teleport to="body">
+      <teleport to="#__nuxt">
         <div
             ref="tooltip"
             class="tooltip"
@@ -68,7 +69,9 @@ function onMouseMove(e) {
 }
 
 function onClick() {
-  if (href.value) router.push(href.value);
+  if (href.value) {
+    router.push(href.value);
+  }
 }
 </script>
 

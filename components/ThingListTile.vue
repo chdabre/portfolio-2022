@@ -15,7 +15,7 @@
             :alt="headline"
         ></dither-image>
       </tooltip>
-      <nuxt-link :to="href" :style="captionStyle">
+      <nuxt-link :to="href" :target="href.includes('http') ? '_blank' : '_self'" :style="captionStyle">
         <h2 v-text="title"></h2>
         <h3 v-text="headline"></h3>
       </nuxt-link>

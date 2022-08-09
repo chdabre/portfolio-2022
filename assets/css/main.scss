@@ -41,6 +41,10 @@ h3 {
     overflow-y: hidden;
   }
 
+  .row {
+    grid-row: 1;
+  }
+
   .col {
     border-right: 2px solid black;
     display: flex;
@@ -138,3 +142,20 @@ h3 {
     padding: $unit 2 * $unit;
   }
 }
+//
+//.page-enter-from{
+//  opacity: 0;
+//}
+//.page-enter-active,
+//.page-leave-active {
+//  transition: all .2s;
+//  position: absolute;
+//  height: 100vh;
+//  overflow: hidden;
+//  // border: 2px solid black;
+//}
+//.page-enter,
+//.page-leave-to {
+//  opacity: 0;
+//  filter: blur(10px);
+//}

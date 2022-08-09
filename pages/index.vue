@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" id="container">
     <div class="container col-6 col-md-6 col-4">
       <div ref="scrollSrc" class="col col-6 col-md-3 col-lg-2">
         <!-- LEFT COL -->
@@ -21,31 +21,30 @@
 
         <section class="showcase">
           <h3 class="text-title">Showcase</h3>
+
           <thing-list-tile
-              title="Photoautomat. 2019"
-              headline="An accessible eye-catcher that helps create lasting memories"
-              color="#0000FF"
-              gltf-url="/models/photobox.glb"
-              href="#"
+              v-for="showcasePost in  showcasePostsFirstHalf"
+              :key="showcasePost._id"
+              :title="`${showcasePost.title}. ${showcasePost.year}`"
+              :headline="showcasePost.description"
+              :color="showcasePost.color"
+              :gltf-url="showcasePost.gltfUrl"
+              :image-url="showcasePost.image"
+              :href="showcasePost._path"
           />
         </section>
       </div>
       <div ref="scrollTarget" class="col col-6 col-md-3 col-lg-2 col-reverse">
         <!-- MIDDLE COL -->
         <thing-list-tile
-            title="Museum ENTER. 2022"
-            headline="An audiovisual storyteller that grows with the collection"
-            color="#FF00FF"
-            href="#"
-            gltf-url="/models/audioguide.glb"
-        />
-
-        <thing-list-tile
-            title="The Line. 2020"
-            headline="A whimsical, ephemeral messenger that lives in the center of a communal space"
-            image-url="https://res.cloudinary.com/dey9hupke/image/upload/w_600,h_400,c_fill/v1589816392/imakethings/hotline.png"
-            color="#FFFF00"
-            href="#"
+            v-for="showcasePost in  showcasePostsSecondHalf"
+            :key="showcasePost._id"
+            :title="`${showcasePost.title}. ${showcasePost.year}`"
+            :headline="showcasePost.description"
+            :color="showcasePost.color"
+            :gltf-url="showcasePost.gltfUrl"
+            :image-url="showcasePost.image"
+            :href="showcasePost._path"
         />
       </div>
     </div>
@@ -55,16 +54,12 @@
         <h3 class="text-title">Other Projects</h3>
 
         <ThingListItem
-            title="Mailman. 2022"
-            subtitle="Personal Project"
-            headline="App to schedule Postcard Creator jobs without checking in every day"
-            href="#"
-        />
-        <ThingListItem
-            title="Unfold News. 2021"
-            subtitle="HackZurich “SRF Workshop Award”"
-            headline="A new way to dive into your news topics without missing what’s important"
-            href="#"
+            v-for="post in otherPosts"
+            :key="post._id"
+            :title="`${post.title}. ${post.year}`"
+            :subtitle="post.subtitle"
+            :headline="post.description"
+            :href="post.externalUrl || post._path"
         />
       </section>
     </div>
@@ -75,7 +70,8 @@
 import {onMounted, ref} from "#imports";
 import ThingListTile from "~/components/ThingListTile.vue";
 import ThingListItem from "~/components/ThingListItem.vue";
-import {queryContent} from "@nuxt/content/dist/runtime/composables/query";
+import {ParsedContent} from "@nuxt/content/dist/runtime/types";
+import {deferredComputed} from "@vue/reactivity";
 
 const BREAKPOINT_MOBILE = 768;
 
@@ -85,52 +81,38 @@ const scrollTarget = ref<HTMLElement>();
 const endTrigger = ref<number>(0);
 const transformAmount = ref<number>(0);
 
+const showcasePosts = ref<ParsedContent[]>();
+const showcasePostsFirstHalf = deferredComputed(() => showcasePosts.value.slice(0, showcasePosts.value.length / 2));
+const showcasePostsSecondHalf = deferredComputed(() => showcasePosts.value.slice(showcasePosts.value.length / 2));
+
+const otherPosts = ref<ParsedContent[]>();
+
 function setupAnimation() {
-  endTrigger.value = scrollSrc.value.clientHeight - window.innerHeight;
-  transformAmount.value = scrollTarget.value.clientHeight - window.innerHeight;
+  if (scrollSrc.value && scrollTarget.value) {
+    endTrigger.value = scrollSrc.value.clientHeight - window.innerHeight;
+    transformAmount.value = scrollTarget.value.clientHeight - window.innerHeight;
+  }
 }
 
 function animate() {
-  if (window.innerWidth <= BREAKPOINT_MOBILE) {
+  if (scrollTarget.value && window.innerWidth <= BREAKPOINT_MOBILE) {
     scrollTarget.value.style.transform = `translateY(0)`;
     return;
   }
   const scrollY = window.scrollY;
-
-  if (scrollY <= endTrigger.value) {
+  if (scrollTarget.value && scrollY <= endTrigger.value) {
     const animProgress = scrollY / endTrigger.value;
     scrollTarget.value.style.transform = `translateY(calc(-100% + 100vh + ${window.scrollY}px + ${transformAmount.value * animProgress}px))`;
   }
 }
 
-// queryContent('/showcase').find().then(items => {
-//   console.log(items)
-// })
+showcasePosts.value = await queryContent('/showcase').find()
+otherPosts.value = await queryContent('/projects').find()
 
 onMounted(() => {
   window.addEventListener('scroll', animate);
   window.addEventListener('resize', setupAnimation);
   setupAnimation();
+  animate();
 })
 </script>
-
-<style>
-.tooltip {
-  position: fixed;
-  top: 0;
-  left: 0;
-  transform: translateX(-50%) translateY(-50%);
-
-  width: 75px;
-  height: 75px;
-  line-height: 75px;
-  border-radius: 50%;
-  font-size: 12px;
-  color: #fff;
-  text-align: center;
-  text-transform: uppercase;
-  background: #000;
-
-  z-index: 5;
-}
-</style>

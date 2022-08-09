@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="href" class="thing-list-item">
+  <nuxt-link :to="href" :target="href.includes('http') ? '_blank' : '_self'" class="thing-list-item">
     <h3 v-text="title"></h3>
     <h4 v-text="subtitle"></h4>
     <p v-text="headline"></p>

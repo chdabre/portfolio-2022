@@ -31,13 +31,13 @@ const container = ref<HTMLElement>();
 const canvas = ref<HTMLCanvasElement>();
 const scene = ref<DisplayCaseScene>();
 
-const material = new THREE.MeshPhongMaterial({
-  side: THREE.DoubleSide,
-  color: '#aaa',
-  specular: '#fff',
-  //wireframe: true,
-  wireframeLinewidth: 10,
-});
+// const material = new THREE.MeshPhongMaterial({
+//   side: THREE.DoubleSide,
+//   color: '#aaa',
+//   specular: '#fff',
+//   //wireframe: true,
+//   wireframeLinewidth: 10,
+// });
 
 class DisplayCaseScene extends THREE.Scene {
   private object: THREE.Object3D;
@@ -173,15 +173,14 @@ class DisplayCaseScene extends THREE.Scene {
 
 function onResize() {
   if (scene.value && container.value) {
-    scene.value.setSize(container.value.clientWidth, container.value.clientWidth);
+    if (container.value.clientWidth > 0) {
+      scene.value.setSize(container.value.clientWidth, container.value.clientWidth);
+    }
   }
 }
 
 onMounted(() => {
   new ResizeObserver(onResize).observe(container.value)
-
-  container.value?.addEventListener('resize', onResize);
-
 
   // objLoader.load(
   //     "/models/photobox.obj",
@@ -207,7 +206,8 @@ onMounted(() => {
   loading.value = true;
   loader.load(url.value, function (gltf) {
     loading.value = false;
-    scene.value = new DisplayCaseScene(canvas.value, container.value.clientWidth, container.value.clientWidth, gltf.scene);
+    const size = container.value.clientWidth || 350;
+    scene.value = new DisplayCaseScene(canvas.value, size, size, gltf.scene);
   }, (xhr) => {
     progress.value = (xhr.loaded / xhr.total);
   },
