@@ -72,6 +72,12 @@ import ThingListTile from "~/components/ThingListTile.vue";
 import ThingListItem from "~/components/ThingListItem.vue";
 import {ParsedContent} from "@nuxt/content/dist/runtime/types";
 import {deferredComputed} from "@vue/reactivity";
+import {useHead} from "#head";
+
+useHead({
+  title: 'Dario Breitenstein | I make things.',
+  titleTemplate: '%s',
+})
 
 const BREAKPOINT_MOBILE = 768;
 

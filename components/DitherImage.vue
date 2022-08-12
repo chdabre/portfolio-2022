@@ -9,7 +9,6 @@
       :width="getImageSize()"
       :height="getImageSize()"
       preload
-      loading="lazy"
       provider="cloudinary"
       fit="fill"
     >
@@ -31,9 +30,9 @@ const canvas = ref<HTMLCanvasElement>();
 
 function getImageSize() {
   if (typeof window !== 'undefined') {
-    return window.innerWidth > 720 ? 720 : 360;
+    return window.innerWidth > 720 ? 720 : 320;
   } else {
-    return 360;
+    return 320;
   }
 }
 
@@ -79,7 +78,6 @@ function imageLoaded() {
 onMounted(() => {
   const imgEl = picture.value.$el.querySelector('img')
   image.value = imgEl;
-  console.log(imgEl.width, imgEl.height);
   imgEl.addEventListener('load', imageLoaded);
   if (image.value?.complete) imageLoaded();
 })

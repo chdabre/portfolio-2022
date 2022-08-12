@@ -1,4 +1,4 @@
-import { defineNuxtConfig } from 'nuxt'
+import {defineNuxtConfig} from 'nuxt'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -46,12 +46,12 @@ export default defineNuxtConfig({
         analyze: true,
     },
     hooks: {
-        'vite:extendConfig'(clientConfig, { isClient }) {
+        'vite:extendConfig'(clientConfig, {isClient}) {
             if (isClient) {
                 clientConfig.build.rollupOptions.output.manualChunks = {
                     'threejs': ['three'],
                 };
             }
         }
-    }
+    },
 })

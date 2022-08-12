@@ -46,9 +46,15 @@ h3 {
   }
 
   .col {
-    border-right: 2px solid black;
     display: flex;
     flex-direction: column;
+
+    @media (min-width: $breakpoint-tablet) {
+      &:first-child {
+        border-left: 2px solid black;
+      }
+      border-right: 2px solid black;
+    }
 
     &.contain-scroll {
       @media (min-width: $breakpoint-desktop) {

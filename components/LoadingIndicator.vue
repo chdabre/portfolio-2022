@@ -15,7 +15,10 @@ const props = defineProps<{
 const {progress} = toRefs(props);
 
 const progressText = deferredComputed(() => {
-  return `${Math.round(progress.value * 100)}%`;
+  if (progress.value < Infinity) {
+    return `${Math.round(progress.value * 100)}%`;
+  }
+  return '';
 });
 </script>
 
