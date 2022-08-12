@@ -6,7 +6,8 @@ export default defineNuxtConfig({
         '@/assets/css/main.scss',
     ],
     modules: [
-        '@nuxt/content'
+        '@nuxt/content',
+        '@nuxt/image-edge',
     ],
     buildModules: [
         '@nuxtjs/google-fonts',
@@ -14,6 +15,18 @@ export default defineNuxtConfig({
     content: {
         // https://content.nuxtjs.org/api/configuration
         documentDriven: true,
+    },
+    image: {
+        // https://v1.image.nuxtjs.org/configuration
+        screens: {
+            xs: 320,
+            sm: 640,
+            md: 720,
+            xl: 1080,
+        },
+        cloudinary: {
+            baseURL: 'https://res.cloudinary.com/dey9hupke/image/upload/'
+        }
     },
     googleFonts: {
         preload: true,

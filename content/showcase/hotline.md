@@ -4,7 +4,7 @@ year: '2020'
 description: 'A whimsical, ephemeral messenger that lives in the center of a communal space'
 collaborators: 'Hanna Lisa Franz / Luca Fluri'
 color: '#FF00FF'
-image: 'https://res.cloudinary.com/dey9hupke/image/upload/h_600,c_fill/v1589816392/imakethings/hotline.png'
+image: '/imakethings/hotline.png'
 ---
 
 My best friends and I always stay in contact. But sometimes, a small personal greeting can get lost under a pile of text messages, WhatsApp stickers, snapchats or Instagram DMs.

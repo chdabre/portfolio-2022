@@ -82,9 +82,8 @@ h3 {
   }
 
   .col-reverse {
-    flex-direction: column-reverse;
-
     @media (min-width: $breakpoint-tablet) {
+      flex-direction: column-reverse;
       transform: translateY(calc(-100% + 100vh));
     }
   }

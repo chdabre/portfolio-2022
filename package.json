@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@nuxt/content": "npm:@nuxt/content-edge@latest",
+    "@nuxt/image-edge": "^1.0.0-27657146.da85542",
     "@nuxtjs/google-fonts": "^3.0.0-0",
     "@types/three": "^0.143.0",
     "nuxt": "3.0.0-rc.6"

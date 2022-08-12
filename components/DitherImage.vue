@@ -1,13 +1,19 @@
 <template>
   <div class="dither-image">
     <canvas ref="canvas"></canvas>
-    <img
-      crossorigin="anonymous"
-      ref="image"
+    <nuxt-picture
+      ref="picture"
       :src="src"
       :alt="alt"
-      @load="imageLoaded"
-    />
+      :imgAttrs="{crossorigin: 'anonymous'}"
+      :width="getImageSize()"
+      :height="getImageSize()"
+      preload
+      loading="lazy"
+      provider="cloudinary"
+      fit="fill"
+    >
+    </nuxt-picture>
   </div>
 </template>
 
@@ -19,13 +25,21 @@ defineProps<{
   alt: string,
 }>();
 
+const picture = ref();
 const image = ref<HTMLImageElement>();
 const canvas = ref<HTMLCanvasElement>();
+
+function getImageSize() {
+  if (typeof window !== 'undefined') {
+    return window.innerWidth > 720 ? 720 : 360;
+  } else {
+    return 360;
+  }
+}
 
 function imageLoaded() {
   const canvasEl = canvas.value;
   if (canvasEl) {
-
     const imageEl = image.value;
     const ctx = canvasEl.getContext("2d");
 
@@ -63,6 +77,10 @@ function imageLoaded() {
 }
 
 onMounted(() => {
+  const imgEl = picture.value.$el.querySelector('img')
+  image.value = imgEl;
+  console.log(imgEl.width, imgEl.height);
+  imgEl.addEventListener('load', imageLoaded);
   if (image.value?.complete) imageLoaded();
 })
 </script>
@@ -73,15 +91,16 @@ onMounted(() => {
   padding-bottom: 100%;
   overflow: hidden;
 
-  img, canvas {
+  :deep(img), canvas {
     position: absolute;
+    width: auto;
     height: 100%;
     left: 50%;
     transform: translateX(-50%);
     opacity: 1;
   }
 
-  img {
+  :deep(img) {
     // filter: grayscale(100%);
     transform-origin: center;
     transition: opacity .2s;
