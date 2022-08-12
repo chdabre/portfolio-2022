@@ -1,7 +1,7 @@
 ---
-title: 'Museum ENTER'
+title: 'ENTER Audioguide'
 year: '2022'
-description: 'A whimsical, ephemeral messenger that lives in the center of a communal space'
+description: 'An audiovisual storyteller that grows with the collection'
 color: '#FFFF00'
 gltfUrl: '/models/audioguide.glb'
 ---

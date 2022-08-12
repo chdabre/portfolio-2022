@@ -107,7 +107,7 @@ function animate() {
 }
 
 showcasePosts.value = await queryContent('/showcase').find()
-otherPosts.value = await queryContent('/projects').find()
+otherPosts.value = await queryContent('/projects').sort({year: -1}).find()
 
 onMounted(() => {
   window.addEventListener('scroll', animate);

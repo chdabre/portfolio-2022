@@ -3,19 +3,20 @@
       ref="container"
       class="tooltip-container"
       @click="onClick"
-      @mouseenter="showTooltip = true"
-      @mouseleave="showTooltip = false"
+      @mouseenter="onMouseEnter"
+      @mouseleave="onMouseLeave"
       @mousemove="onMouseMove"
-      @touchend="showTooltip = false"
+      @touchend="onMouseLeave"
   >
     <ClientOnly>
       <teleport to="#__nuxt">
         <div
             ref="tooltip"
-            class="tooltip"
             :class="{ active: showTooltip }"
             :style="tooltipStyle"
-        >Read<br>Story</div>
+            class="tooltip"
+        >Read<br>Story
+        </div>
       </teleport>
     </ClientOnly>
     <slot></slot>
@@ -32,7 +33,7 @@ const props = defineProps<{
   href?: string,
 }>();
 
-const { color, href } = toRefs(props);
+const {color, href} = toRefs(props);
 
 const router = useRouter();
 
@@ -63,7 +64,18 @@ function fontColor(color: string) {
   return '#000';
 }
 
-function onMouseMove(e) {
+function onMouseEnter(e: MouseEvent) {
+  showTooltip.value = true;
+
+  xPos.value = e.clientX;
+  yPos.value = e.clientY;
+}
+
+function onMouseLeave(e: MouseEvent) {
+  showTooltip.value = false;
+}
+
+function onMouseMove(e: MouseEvent) {
   xPos.value = e.clientX;
   yPos.value = e.clientY;
 }
@@ -77,7 +89,9 @@ function onClick() {
 
 <style lang="scss" scoped>
 .tooltip-container {
-  cursor: none;
+  &:hover {
+    cursor: none;
+  }
 }
 
 .tooltip {

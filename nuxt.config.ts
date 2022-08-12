@@ -23,6 +23,9 @@ export default defineNuxtConfig({
             'Space Grotesk': {
                 wght: [300, 400, 500, 600, 700],
             },
+            'Libre Franklin': {
+                wght: [500, 700, 900],
+            }
         }
     }
 })
