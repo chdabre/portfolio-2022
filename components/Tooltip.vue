@@ -8,17 +8,15 @@
       @mousemove="onMouseMove"
       @touchend="onMouseLeave"
   >
-    <ClientOnly>
-      <teleport to="#__nuxt">
-        <div
-            ref="tooltip"
-            :class="{ active: showTooltip }"
-            :style="tooltipStyle"
-            class="tooltip"
-        >Read<br>Story
-        </div>
-      </teleport>
-    </ClientOnly>
+    <teleport to="body">
+      <div
+          ref="tooltip"
+          :class="{ active: showTooltip }"
+          :style="tooltipStyle"
+          class="tooltip"
+      >Read<br>Story
+      </div>
+    </teleport>
     <slot></slot>
   </div>
 </template>
