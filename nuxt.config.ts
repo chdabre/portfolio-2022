@@ -32,12 +32,25 @@ export default defineNuxtConfig({
         preload: true,
         prefetch: true,
         preconnect: true,
+        display: 'swap',
         families: {
             'Space Grotesk': {
                 wght: [300, 400, 500, 600, 700],
             },
             'Libre Franklin': {
                 wght: [500, 700, 900],
+            }
+        }
+    },
+    build: {
+        analyze: true,
+    },
+    hooks: {
+        'vite:extendConfig'(clientConfig, { isClient }) {
+            if (isClient) {
+                clientConfig.build.rollupOptions.output.manualChunks = {
+                    'threejs': ['three'],
+                };
             }
         }
     }
