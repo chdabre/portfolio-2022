@@ -10,7 +10,7 @@ import {useHead} from "#head";
 useHead({
   titleTemplate: '%s | Dario Breitenstein',
   meta: [
-    {name: 'description', content: 'I am a designer, engineer and artist building bridges between the digital and physical world.\n Based in Zürich, Switzerland.'},
+    { name: 'description', content: 'I am a designer, engineer and artist building bridges between the digital and physical world.\n Based in Zürich, Switzerland.'},
     { name: 'msapplication-TileColor', content: '#ffffff' },
     { name: 'theme-color', content: '#ffffff' },
   ],

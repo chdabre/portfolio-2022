@@ -45,6 +45,11 @@ export default defineNuxtConfig({
     build: {
         analyze: true,
     },
+    nitro: {
+        prerender: {
+            routes: ['/sitemap.xml']
+        }
+    },
     hooks: {
         'vite:extendConfig'(clientConfig, {isClient}) {
             if (isClient) {
