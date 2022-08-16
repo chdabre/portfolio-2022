@@ -6,7 +6,15 @@
 import {useHead} from "#head";
 
 useHead({
-  titleTemplate: '%s | Dario Breitenstein',
+  titleTemplate: (titleChunk) => {
+    if (titleChunk) {
+      if (!titleChunk.includes('Dario Breitenstein')) {
+        return `${titleChunk} | Dario Breitenstein`;
+      }
+      return titleChunk;
+    }
+    return 'Dario Breitenstein | I make things.';
+  },
   meta: [
     { name: 'description', content: 'I am a designer, engineer and artist building bridges between the digital and physical world.\n Based in Zürich, Switzerland.'},
     { name: 'msapplication-TileColor', content: '#ffffff' },

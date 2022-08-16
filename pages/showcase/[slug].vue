@@ -35,11 +35,11 @@
 </template>
 
 <script lang="ts" setup>
-import {useContent, useContentHead, useHead} from "#imports";
 import { fontColor } from "~/utils/color";
+import {useContent, useContentHead} from "#imports";
+import {useHead} from "#head";
 
 const { page } = useContent()
-useContentHead(page)
 useHead({
   meta: [
     {
@@ -48,6 +48,7 @@ useHead({
     }
   ]
 })
+useContentHead(page)
 </script>
 
 <style lang="scss" scoped>
