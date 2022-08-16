@@ -19,7 +19,6 @@ When the earpiece is picked up from the phone, the operator with ever-changing m
 
 THE LINE is a whimsical and tactile way to deliver simple short messages to your best friends.
 
-Built by Dario Breitenstein / H. Franz / L. Fluri
 
 ::tech-facts
 #link

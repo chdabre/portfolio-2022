@@ -24,6 +24,12 @@ In the top compartment, there is a Nikon DSLR and two battery-powered flashes fo
 ::
 
 ::image-carousel
+---
+images:
+- /imakethings/P3310126_phyf6x.jpg
+- /imakethings/PhotoboxThumbnail_octghf.jpg
+- /imakethings/P3310136_xls087.jpg
+---
 ::
 
 ::tech-facts

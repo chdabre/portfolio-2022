@@ -17,6 +17,10 @@
 import {Carousel, Navigation, Pagination, Slide} from 'vue3-carousel';
 import DitherImage from "~/components/DitherImage.vue";
 
+defineProps<{
+  images: string[],
+}>();
+
 const settings = {
   itemsToShow: 3,
 }
@@ -29,12 +33,6 @@ const breakpoints = {
     itemsToShow: 3,
   },
 }
-
-const images = [
-  '/imakethings/P3310126_phyf6x.jpg',
-  '/imakethings/PhotoboxThumbnail_octghf.jpg',
-  '/imakethings/P3310136_xls087.jpg'
-]
 </script>
 
 <style lang="scss">
@@ -65,8 +63,9 @@ const images = [
       }
     }
 
-    img {
+    img, canvas {
       width: 100%;
+      z-index: -1;
     }
   }
 

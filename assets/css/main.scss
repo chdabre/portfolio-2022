@@ -91,6 +91,10 @@ h3 {
     @media (min-width: $breakpoint-tablet) {
       flex-direction: column-reverse;
       transform: translateY(calc(-100% + 100vh));
+
+      >:last-child{
+        border-top: 2px solid black;
+      }
     }
   }
 }

@@ -30,14 +30,31 @@
       <ContentRenderer class="content__markdown" :value="page" />
 
       <div id="tech-facts-wrapper"></div>
+
+      <h3 class="text-title">Other Projects</h3>
+      <template
+          v-for="post in morePosts"
+      >
+        <thing-list-tile
+            v-if="post"
+            :key="post._id"
+            :title="`${post.title}. ${post.year}`"
+            :headline="post.description"
+            :color="post.color"
+            :gltf-url="post.gltfUrl"
+            :image-url="post.image"
+            :href="post._path"
+        />
+      </template>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { fontColor } from "~/utils/color";
-import {useContent, useContentHead} from "#imports";
+import {queryContent, ref, useContent, useContentHead} from "#imports";
 import {useHead} from "#head";
+import {ParsedContent} from "@nuxt/content/dist/runtime/types";
 
 const { page } = useContent()
 useHead({
@@ -49,6 +66,12 @@ useHead({
   ]
 })
 useContentHead(page)
+
+const morePosts = ref<ParsedContent[]>();
+morePosts.value = (
+    await queryContent('/showcase')
+        .findSurround(page.value._path,{before: 3, after: 3})
+  ).filter(x => !!x).slice(0,3);
 </script>
 
 <style lang="scss" scoped>
@@ -93,7 +116,7 @@ useContentHead(page)
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
-  margin-bottom: 8 * $unit;
+  // margin-bottom: 8 * $unit;
 
 
   h3 {
@@ -183,6 +206,24 @@ useContentHead(page)
     @media (min-width: $breakpoint-tablet) {
       margin: 0;
       grid-column-start: span 1;
+    }
+  }
+
+  .text-title {
+    padding: 0 2 * $unit;
+    grid-column-start: span 3;
+  }
+
+  .thing {
+    grid-column-start: span 3;
+    @media (min-width: $breakpoint-tablet) {
+      grid-column-start: span 1;
+    }
+    border-top: 2px solid black;
+
+    border-right: 2px solid transparent;
+    &:not(:last-child) {
+      border-right: 2px solid black;
     }
   }
 }
