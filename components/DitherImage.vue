@@ -78,7 +78,10 @@ function imageLoaded() {
 onMounted(() => {
   const imgEl = picture.value.$el.querySelector('img')
   image.value = imgEl;
+
   imgEl.addEventListener('load', imageLoaded);
+  new ResizeObserver(imageLoaded).observe(imgEl)
+
   if (image.value?.complete) imageLoaded();
 })
 </script>

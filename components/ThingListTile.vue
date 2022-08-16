@@ -10,7 +10,7 @@
             :url="gltfUrl"
         ></display-case>
         <dither-image
-            v-if="imageUrl"
+            v-else-if="imageUrl"
             :src="imageUrl"
             :alt="headline"
         ></dither-image>

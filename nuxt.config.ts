@@ -32,7 +32,6 @@ export default defineNuxtConfig({
         }
     },
     googleFonts: {
-        preload: true,
         prefetch: true,
         preconnect: true,
         display: 'swap',

@@ -1,18 +1,22 @@
 <template>
-  <div class="tech-facts">
-    <h3>Technical Facts</h3>
-    <h4 class="front-link">
-      <Markdown :use="$slots.link" unwrap="p"/>
-    </h4>
-    <section>
-      <h4>Hardware</h4>
-      <Markdown :use="$slots.hardware"/>
-    </section>
-    <section>
-      <h4>Software</h4>
-      <Markdown :use="$slots.software"/>
-    </section>
-  </div>
+  <client-only>
+    <teleport to="#tech-facts-wrapper">
+      <div class="tech-facts">
+        <h3>Technical Facts</h3>
+        <h4 class="front-link">
+          <Markdown :use="$slots.link" unwrap="p"/>
+        </h4>
+        <section>
+          <h4>Hardware</h4>
+          <Markdown :use="$slots.hardware"/>
+        </section>
+        <section>
+          <h4>Software</h4>
+          <Markdown :use="$slots.software"/>
+        </section>
+      </div>
+    </teleport>
+  </client-only>
 </template>
 
 <script>
@@ -29,19 +33,12 @@ $max-width: 320px;
 .tech-facts {
   max-width: 100%;
   border: 2px solid black;
-  margin-top: 2 * $unit;
 
   font-family: 'Libre Franklin', 'Franklin Gothic', 'Helvetica', 'Helvetica Neue', sans-serif;
 
   @media (min-width: $breakpoint-tablet) {
     max-width: 320px;
   }
-
-  //@media (min-width: $breakpoint-tablet + 2 * ($max-width + 4 * $unit)) {
-  //  position: absolute;
-  //  top: $breakpoint-tablet;
-  //  right: calc(((100vw - $breakpoint-tablet) / 2 - $max-width) / 2);
-  //}
 
   h3 {
     font-weight: 900;
@@ -75,19 +72,24 @@ $max-width: 320px;
 
     ul {
       list-style: none;
-      border-bottom: 1px dashed black;
-      margin-bottom: 0.5 * $unit;
+      font-weight: 600;
+      padding: 0.25 * $unit 0;
     }
 
-    >ul {
+    li {
+      padding: 0.25 * $unit 0;
+    }
 
-      font-weight: 600;
+    > ul {
+      > li {
+        border-bottom: 1px dashed black;
+      }
 
       ul > li {
         font-weight: 400;
-        margin-bottom: 0.25 * $unit;
       }
     }
+
   }
 }
 </style>
