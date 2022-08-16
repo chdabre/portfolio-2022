@@ -180,7 +180,7 @@ morePosts.value = (
       padding-bottom: $unit;
       margin: 2 * $unit;
       //border-bottom: 1px solid black;
-      font-size: 1.5remg;
+      font-size: 1.5rem;
 
       .fact-name {
         font-weight: 600;
