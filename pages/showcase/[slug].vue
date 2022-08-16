@@ -14,7 +14,7 @@
       </section>
 
       <div class="content__intro">
-        <h1>{{ page.title }}.</h1>
+        <h2>{{ page.title }}.</h2>
 
         <table class="facts-table">
           <tbody>
@@ -95,9 +95,6 @@ useContentHead(page)
 
   margin-bottom: 8 * $unit;
 
-  h1 {
-    margin-bottom: 0.5 * $unit;
-  }
 
   h3 {
     padding-bottom: $unit;
@@ -149,7 +146,8 @@ useContentHead(page)
       grid-column-start: span 2;
     }
 
-    h1 {
+    h2 {
+      font-size: 1.5rem;
       margin: 2 * $unit 2 * $unit 0 2 * $unit;
     }
 
@@ -180,8 +178,10 @@ useContentHead(page)
   #tech-facts-wrapper {
     grid-column-start: span 3;
     padding: 0 2 * $unit;
+    margin: 2 * $unit 0;
 
     @media (min-width: $breakpoint-tablet) {
+      margin: 0;
       grid-column-start: span 1;
     }
   }
