@@ -16,6 +16,7 @@
       <div class="content__intro">
         <h2>{{ page.title }}.</h2>
 
+
         <table class="facts-table">
           <tbody>
             <tr v-if="page.year"><td class="fact-name">Year</td><td class="fact">{{ page.year }}</td></tr>
@@ -125,7 +126,8 @@ morePosts.value = (
   }
 
   :deep(p) {
-    line-height: 1.5rem;
+    font-size: 1.2rem;
+    line-height: 2rem;
   }
 
   &__hero {
@@ -170,7 +172,7 @@ morePosts.value = (
     }
 
     h2 {
-      font-size: 1.5rem;
+      font-size: 2rem;
       margin: 2 * $unit 2 * $unit 0 2 * $unit;
     }
 
@@ -178,6 +180,7 @@ morePosts.value = (
       padding-bottom: $unit;
       margin: 2 * $unit;
       //border-bottom: 1px solid black;
+      font-size: 1.5remg;
 
       .fact-name {
         font-weight: 600;

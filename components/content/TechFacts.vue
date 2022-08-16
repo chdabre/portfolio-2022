@@ -1,5 +1,5 @@
 <template>
-  <client-only>
+  <client-only v-if="teleport === 'true'">
     <teleport to="#tech-facts-wrapper">
       <div class="tech-facts">
         <h3>Technical Facts</h3>
@@ -17,12 +17,28 @@
       </div>
     </teleport>
   </client-only>
+  <div class="tech-facts add-margin" v-else>
+    <h3>Technical Facts</h3>
+    <h4 class="front-link">
+      <Markdown :use="$slots.link" unwrap="p"/>
+    </h4>
+    <section>
+      <h4>Hardware</h4>
+      <Markdown :use="$slots.hardware"/>
+    </section>
+    <section>
+      <h4>Software</h4>
+      <Markdown :use="$slots.software"/>
+    </section>
+  </div>
 </template>
 
-<script>
-export default {
-  name: "TechFacts"
-}
+<script lang="ts" setup>
+withDefaults(defineProps<{
+  teleport?: string,
+}>(), {
+  teleport: 'true',
+});
 </script>
 
 <style lang="scss">
@@ -91,5 +107,9 @@ $max-width: 320px;
     }
 
   }
+}
+
+.add-margin {
+  margin: 2 * $unit 0;
 }
 </style>

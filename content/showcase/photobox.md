@@ -11,11 +11,11 @@ image: '/imakethings/Photobox_Wedding_bnp7ny.png'
 For my sisters' wedding in 2019, I wanted to create an opportunity for the guests to take group pictures and have something to take home with them.
 
 I came up with this compact photo booth. It was developed in a user-centered process, and is designed to be easy to use both for the operator and the end user.
-
+<br><br>
 The users simply need to press a button and they are automatically guided through the process of taking a picture. When a picture is taken, it is automatically printed on a roll of thermal receipt paper including a number which allows the user to grab the picture from the website after the event.
 
 Using thermal paper makes operating the photo booth very inexpensive, which means it can be left unattended for the entire night.
-
+<br><br>
 The portable photo booth is powered by a raspberry pi which runs a python-based [backend](https://github.com/chdabre/photobox-backend) software and a browser with a web-based [frontend](https://github.com/chdabre/photobox-frontend) written in Vue.js.
 
 In the top compartment, there is a Nikon DSLR and two battery-powered flashes for perfect illumination.
