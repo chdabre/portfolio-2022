@@ -180,13 +180,18 @@ morePosts.value = (
       padding-bottom: $unit;
       margin: 2 * $unit;
       //border-bottom: 1px solid black;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
+
+      td {
+        display: inline-block;
+      }
 
       .fact-name {
         font-weight: 600;
         padding-right: $unit;
+        width: 100%;
         @media (min-width: $breakpoint-tablet) {
-          width: 150px;
+          width: 15g0px;
         }
       }
     }
