@@ -1,5 +1,10 @@
 <template>
-  <carousel :breakpoints="breakpoints" :settings="settings">
+  <carousel
+      :breakpoints="breakpoints"
+      :settings="settings"
+      :mouse-drag="false"
+      v-model="selectedImage"
+  >
     <slide v-for='(image, index) in images' :key="index">
       <dither-image
           :src="image"
@@ -16,6 +21,8 @@
 <script lang="ts" setup>
 import {Carousel, Navigation, Pagination, Slide} from 'vue3-carousel';
 import DitherImage from "~/components/DitherImage.vue";
+
+const selectedImage = ref<number>(0);
 
 defineProps<{
   images: string[],

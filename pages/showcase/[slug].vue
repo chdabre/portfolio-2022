@@ -191,7 +191,7 @@ morePosts.value = (
         padding-right: $unit;
         width: 100%;
         @media (min-width: $breakpoint-tablet) {
-          width: 15g0px;
+          width: 150px;
         }
       }
     }

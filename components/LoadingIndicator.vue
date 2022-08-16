@@ -1,6 +1,6 @@
 <template>
   <div class="loading-indicator">
-    <span>LOADING {{ progress ? progressText : '' }}</span>
+    <span>{{ progress ? progressText : '' }}</span>
   </div>
 </template>
 

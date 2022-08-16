@@ -5,3 +5,8 @@ $breakpoint-desktop: 1080px;
 
 $text-on-surface: rgba(0,0,0,0.87);
 $grey-light: rgba(0,0,0,0.1);
+
+@mixin cross-background {
+  background: $grey-light url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M100 0 L0 100 ' stroke='rgba(0,0,0,0.8)' stroke-width='.1'/><path d='M0 0 L100 100 ' stroke='rgba(0,0,0,0.8)' stroke-width='.1'/></svg>") no-repeat center center;
+  background-size: 100% 100%, auto;
+}

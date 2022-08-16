@@ -1,7 +1,7 @@
 <template>
-  <div ref="container" class="display-case">
-    <loading-indicator v-if="loading" :progress="progress"></loading-indicator>
+  <div ref="container" class="display-case" :class="{ loading }">
     <canvas ref="canvas"></canvas>
+    <loading-indicator v-if="loading" :progress="progress"></loading-indicator>
   </div>
 </template>
 
@@ -24,7 +24,7 @@ const props = defineProps<{
 
 const { url } = toRefs(props);
 
-const loading = ref<boolean>(false);
+const loading = ref<boolean>(true);
 const progress = ref<number>(0);
 
 const container = ref<HTMLElement>();
@@ -218,9 +218,20 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+@import "assets/css/variables";
+
 .display-case {
   position: relative;
   padding-bottom: 100%;
+
+  background: white;
+
+  transition: background .3s;
+
+  &.loading {
+    background: rgba(0,0,0,0.1);
+    @include cross-background();
+  }
 
   canvas {
     position: absolute;
